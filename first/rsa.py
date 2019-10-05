@@ -44,6 +44,15 @@ def gcd(a, b):
     return gc
 
 
+def egcd(a, b):
+    if a == 0:
+        return b, 0, 1
+
+    else:
+        g, y, x = egcd(b % a, a)
+    return g, x - (b // a) * y, y
+
+
 def multiplicative_inverse(e, phi):
     """
     Euclid's extended algorithm for finding the multiplicative
@@ -52,10 +61,15 @@ def multiplicative_inverse(e, phi):
     23
     """
     # d * e mod phi = 1         d = ?
-    d = 0
-    while (d * e) % phi != 1:
-        d += 1
-    return d
+
+    # Мое решение
+    # d = 0
+    # while (d * e) % phi != 1:
+    #     d += 1
+    # return d
+
+    g, x, y = egcd(e, phi)
+    return x % phi
 
 
 def generate_keypair(p, q):
