@@ -14,7 +14,6 @@ def encrypt(plaintext='abc', keyword='bbb'):
     text = []
     mykey = []
 
-    # Создаю словарь (нижний и верхний регистр)
     firstcount = 0
     for i in range(97, 123):
         abcd[chr(i)] = firstcount
@@ -25,7 +24,6 @@ def encrypt(plaintext='abc', keyword='bbb'):
         ABCD[chr(i)] = firstcount
         firstcount += 1
 
-    # Создаю второй словарь, чтобы обращаться к ключу по значению (нижний регистр)
     firstcount = 0
     for i in range(97, 123):
         efgk[firstcount] = chr(i)
@@ -35,7 +33,6 @@ def encrypt(plaintext='abc', keyword='bbb'):
         efgk[firstcount] = chr(i)
         firstcount += 1
 
-    # Верхний регистр
     firstcount = 0
     for i in range(65, 91):
         EFGK[firstcount] = chr(i)
@@ -45,24 +42,22 @@ def encrypt(plaintext='abc', keyword='bbb'):
         EFGK[firstcount] = chr(i)
         firstcount += 1
 
-    # Создаю списки текста и ключей
     for i in plaintext:
         text.append(i)
     while len(text) > len(mykey):
         for i in keyword.lower():
             mykey.append(abcd[i])
 
-    # Шифрую
     i = 0
     myciphertext = []
 
     for j in text:
         if j.islower() == True:
-            g = abcd[text[i]] + mykey[i]  # Сумма значения текста и ключа шифра
+            g = abcd[text[i]] + mykey[i] 
             myciphertext.append(efgk[g])
             i += 1
         elif j.isupper() == True:
-            g = ABCD[text[i]] + mykey[i]  # Сумма значения текста и ключа шифра
+            g = ABCD[text[i]] + mykey[i]  
             myciphertext.append(EFGK[g])
             i += 1
         else:
@@ -88,7 +83,6 @@ def decrypt(ciphertext, keyword):
     text = []
     mykey = []
 
-    # Создаю словарь (нижний и верхний регистр)
     firstcount = 0
     for i in range(97, 123):
         abcd[chr(i)] = firstcount
@@ -99,7 +93,6 @@ def decrypt(ciphertext, keyword):
         ABCD[chr(i)] = firstcount
         firstcount += 1
 
-    # Создаю второй словарь, чтобы обращаться к ключу по значению (нижний регистр)
     firstcount = 0
     for i in range(97, 123):
         efgk[firstcount] = chr(i)
@@ -109,7 +102,6 @@ def decrypt(ciphertext, keyword):
         efgk[firstcount] = chr(i)
         firstcount += 1
 
-    # Верхний регистр
     firstcount = 0
     for i in range(65, 91):
         EFGK[firstcount] = chr(i)
@@ -119,14 +111,12 @@ def decrypt(ciphertext, keyword):
         EFGK[firstcount] = chr(i)
         firstcount += 1
 
-    # Создаю списки текста и ключей
     for i in ciphertext:
         text.append(i)
     while len(text) > len(mykey):
         for i in keyword.lower():
             mykey.append(abcd[i])
 
-    # Шифрую
     i = 0
     myciphertext = []
 
